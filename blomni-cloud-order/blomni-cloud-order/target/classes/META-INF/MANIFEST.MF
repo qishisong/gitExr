@@ -1,0 +1,10 @@
+Manifest-Version: 1.0
+Implementation-Vendor: Pivotal Software, Inc.
+Implementation-Title: blomni-cloud-order
+Implementation-Version: 1.0.0
+Implementation-Vendor-Id: com.blomini
+Build-Jdk: 1.7.0_67
+Built-By: TLQ45
+Created-By: Maven Integration for Eclipse
+Main-Class: com.blomni.o2o.order.OrderApplication
+

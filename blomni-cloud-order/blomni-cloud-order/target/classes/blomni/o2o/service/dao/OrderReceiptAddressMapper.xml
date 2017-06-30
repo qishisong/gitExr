@@ -1,0 +1,459 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.blomni.o2o.order.mapper.OrderReceiptAddressMapper" >
+  <resultMap id="BaseResultMap" type="com.blomni.o2o.order.entity.OrderReceiptAddress" >
+    <id column="ID" property="id" jdbcType="VARCHAR" />
+    <result column="RECEIPT_NAME" property="receiptName" jdbcType="VARCHAR" />
+    <result column="RECEIPT_PHONE" property="receiptPhone" jdbcType="VARCHAR" />
+    <result column="RECEIPT_REGION" property="receiptRegion" jdbcType="VARCHAR" />
+    <result column="RECEIPT_PROVINCE_ID" property="receiptProvinceId" jdbcType="VARCHAR" />
+    <result column="RECEIPT_PROVINCE_NAME" property="receiptProvinceName" jdbcType="VARCHAR" />
+    <result column="RECEIPT_CITY_ID" property="receiptCityId" jdbcType="VARCHAR" />
+    <result column="RECEIPT_CITY_NAME" property="receiptCityName" jdbcType="VARCHAR" />
+    <result column="RECEIPT_AREA_ID" property="receiptAreaId" jdbcType="VARCHAR" />
+    <result column="RECEIPT_AREA_NAME" property="receiptAreaName" jdbcType="VARCHAR" />
+    <result column="RECEIPT_DETAIL_ADDRESS" property="receiptDetailAddress" jdbcType="VARCHAR" />
+    <result column="RECEIPT_TYPE" property="receiptType" jdbcType="VARCHAR" />
+    <result column="IDENTITY_ID" property="identityId" jdbcType="VARCHAR" />
+    <result column="IS_DEFAULT" property="isDefault" jdbcType="VARCHAR" />
+    <result column="CREATE_BY" property="createBy" jdbcType="VARCHAR" />
+    <result column="CREATE_DATE" property="createDate" jdbcType="DATE" />
+    <result column="UPDATE_BY" property="updateBy" jdbcType="VARCHAR" />
+    <result column="UPDATE_DATE" property="updateDate" jdbcType="DATE" />
+    <result column="DEL_FLAG" property="delFlag" jdbcType="VARCHAR" />
+    <result column="POST_CODE" property="postCode" jdbcType="VARCHAR" />
+    <result column="SPARE" property="spare" jdbcType="VARCHAR" />
+    <result column="SPARE1" property="spare1" jdbcType="VARCHAR" />
+    <result column="SPARE2" property="spare2" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      DEL_FLAG='0'
+      <if test="identityId !=null and identityId !=''">
+      	and IDENTITY_ID=#{identityId}
+      </if>
+    </where>
+  </sql>
+  
+  <sql id="Base_Column_List" >
+    ID, RECEIPT_NAME, RECEIPT_PHONE, RECEIPT_REGION, RECEIPT_PROVINCE_ID, RECEIPT_PROVINCE_NAME, 
+    RECEIPT_CITY_ID, RECEIPT_CITY_NAME, RECEIPT_AREA_ID, RECEIPT_AREA_NAME, RECEIPT_DETAIL_ADDRESS, 
+    RECEIPT_TYPE, IDENTITY_ID, IS_DEFAULT, CREATE_BY, CREATE_DATE, UPDATE_BY, UPDATE_DATE, 
+    DEL_FLAG, POST_CODE, SPARE, SPARE1, SPARE2
+  </sql>
+  <select id="selectByOrderReceiptAddress" resultMap="BaseResultMap" parameterType="com.blomni.o2o.order.entity.OrderReceiptAddress" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from ORDER_RECEIPT_ADDRESS
+    
+      <include refid="Example_Where_Clause" />
+   
+    
+      order by CREATE_DATE
+    
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from ORDER_RECEIPT_ADDRESS
+    where ID = #{receiptId,jdbcType=VARCHAR}
+  </select>
+ 
+  <insert id="insert" parameterType="com.blomni.o2o.order.entity.OrderReceiptAddress" >
+     insert into ORDER_RECEIPT_ADDRESS (ID, RECEIPT_NAME, RECEIPT_PHONE, 
+      RECEIPT_REGION, RECEIPT_PROVINCE_ID, RECEIPT_PROVINCE_NAME, 
+      RECEIPT_CITY_ID, RECEIPT_CITY_NAME, RECEIPT_AREA_ID, 
+      RECEIPT_AREA_NAME, RECEIPT_DETAIL_ADDRESS, 
+      RECEIPT_TYPE, IDENTITY_ID, IS_DEFAULT, 
+      CREATE_BY, CREATE_DATE, UPDATE_BY, 
+      UPDATE_DATE, DEL_FLAG, POST_CODE, 
+      SPARE, SPARE1, SPARE2
+      )
+    values (#{id,jdbcType=VARCHAR}, #{receiptName,jdbcType=VARCHAR}, #{receiptPhone,jdbcType=VARCHAR}, 
+      #{receiptRegion,jdbcType=VARCHAR}, #{receiptProvinceId,jdbcType=VARCHAR}, #{receiptProvinceName,jdbcType=VARCHAR}, 
+      #{receiptCityId,jdbcType=VARCHAR}, #{receiptCityName,jdbcType=VARCHAR}, #{receiptAreaId,jdbcType=VARCHAR}, 
+      #{receiptAreaName,jdbcType=VARCHAR}, #{receiptDetailAddress,jdbcType=VARCHAR}, 
+      #{receiptType,jdbcType=VARCHAR}, #{identityId,jdbcType=VARCHAR}, #{isDefault,jdbcType=VARCHAR}, 
+      #{createBy,jdbcType=VARCHAR}, #{createDate,jdbcType=TIMESTAMP}, #{updateBy,jdbcType=VARCHAR}, 
+      #{updateDate,jdbcType=TIMESTAMP}, #{delFlag,jdbcType=VARCHAR}, #{postCode,jdbcType=VARCHAR}, 
+      #{spare,jdbcType=VARCHAR}, #{spare1,jdbcType=VARCHAR}, #{spare2,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.blomni.o2o.order.entity.OrderReceiptAddress" >
+     insert into ORDER_RECEIPT_ADDRESS
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="receiptName != null" >
+        RECEIPT_NAME,
+      </if>
+      <if test="receiptPhone != null" >
+        RECEIPT_PHONE,
+      </if>
+      <if test="receiptRegion != null" >
+        RECEIPT_REGION,
+      </if>
+      <if test="receiptProvinceId != null" >
+        RECEIPT_PROVINCE_ID,
+      </if>
+      <if test="receiptProvinceName != null" >
+        RECEIPT_PROVINCE_NAME,
+      </if>
+      <if test="receiptCityId != null" >
+        RECEIPT_CITY_ID,
+      </if>
+      <if test="receiptCityName != null" >
+        RECEIPT_CITY_NAME,
+      </if>
+      <if test="receiptAreaId != null" >
+        RECEIPT_AREA_ID,
+      </if>
+      <if test="receiptAreaName != null" >
+        RECEIPT_AREA_NAME,
+      </if>
+      <if test="receiptDetailAddress != null" >
+        RECEIPT_DETAIL_ADDRESS,
+      </if>
+      <if test="receiptType != null" >
+        RECEIPT_TYPE,
+      </if>
+      <if test="identityId != null" >
+        IDENTITY_ID,
+      </if>
+      <if test="isDefault != null" >
+        IS_DEFAULT,
+      </if>
+      <if test="createBy != null" >
+        CREATE_BY,
+      </if>
+      <if test="createDate != null" >
+        CREATE_DATE,
+      </if>
+      <if test="updateBy != null" >
+        UPDATE_BY,
+      </if>
+      <if test="updateDate != null" >
+        UPDATE_DATE,
+      </if>
+      <if test="delFlag != null" >
+        DEL_FLAG,
+      </if>
+      <if test="postCode != null" >
+        POST_CODE,
+      </if>
+      <if test="spare != null" >
+        SPARE,
+      </if>
+      <if test="spare1 != null" >
+        SPARE1,
+      </if>
+      <if test="spare2 != null" >
+        SPARE2,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="receiptName != null" >
+        #{receiptName,jdbcType=VARCHAR},
+      </if>
+      <if test="receiptPhone != null" >
+        #{receiptPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="receiptRegion != null" >
+        #{receiptRegion,jdbcType=VARCHAR},
+      </if>
+      <if test="receiptProvinceId != null" >
+        #{receiptProvinceId,jdbcType=VARCHAR},
+      </if>
+      <if test="receiptProvinceName != null" >
+        #{receiptProvinceName,jdbcType=VARCHAR},
+      </if>
+      <if test="receiptCityId != null" >
+        #{receiptCityId,jdbcType=VARCHAR},
+      </if>
+      <if test="receiptCityName != null" >
+        #{receiptCityName,jdbcType=VARCHAR},
+      </if>
+      <if test="receiptAreaId != null" >
+        #{receiptAreaId,jdbcType=VARCHAR},
+      </if>
+      <if test="receiptAreaName != null" >
+        #{receiptAreaName,jdbcType=VARCHAR},
+      </if>
+      <if test="receiptDetailAddress != null" >
+        #{receiptDetailAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="receiptType != null" >
+        #{receiptType,jdbcType=VARCHAR},
+      </if>
+      <if test="identityId != null" >
+        #{identityId,jdbcType=VARCHAR},
+      </if>
+      <if test="isDefault != null" >
+        #{isDefault,jdbcType=VARCHAR},
+      </if>
+      <if test="createBy != null" >
+        #{createBy,jdbcType=VARCHAR},
+      </if>
+      <if test="createDate != null" >
+        SYSDATE(),
+      </if>
+      <if test="updateBy != null" >
+        #{updateBy,jdbcType=VARCHAR},
+      </if>
+      <if test="updateDate != null" >
+        #{updateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="delFlag != null" >
+        #{delFlag,jdbcType=VARCHAR},
+      </if>
+      <if test="postCode != null" >
+        #{postCode,jdbcType=VARCHAR},
+      </if>
+      <if test="spare != null" >
+        #{spare,jdbcType=VARCHAR},
+      </if>
+      <if test="spare1 != null" >
+        #{spare1,jdbcType=VARCHAR},
+      </if>
+      <if test="spare2 != null" >
+        #{spare2,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.blomni.o2o.order.entity.OrderReceiptAddress" resultType="java.lang.Integer" >
+    select count(*) from ORDER_RECEIPT_ADDRESS
+    
+     <where >
+	      DEL_FLAG='0'
+	      <if test="identityId !=null and identityId !='' ">
+	      	and IDENTITY_ID=#{identityId}
+	      </if>
+    </where>
+   
+  </select>
+  
+  <update id="updateByPrimaryKeySelective" parameterType="com.blomni.o2o.order.entity.OrderReceiptAddress" >
+  update ORDER_RECEIPT_ADDRESS
+    <set >
+      <if test="receiptName != null" >
+        RECEIPT_NAME = #{receiptName,jdbcType=VARCHAR},
+      </if>
+      <if test="receiptPhone != null" >
+        RECEIPT_PHONE = #{receiptPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="receiptRegion != null" >
+        RECEIPT_REGION = #{receiptRegion,jdbcType=VARCHAR},
+      </if>
+      <if test="receiptProvinceId != null" >
+        RECEIPT_PROVINCE_ID = #{receiptProvinceId,jdbcType=VARCHAR},
+      </if>
+      <if test="receiptProvinceName != null" >
+        RECEIPT_PROVINCE_NAME = #{receiptProvinceName,jdbcType=VARCHAR},
+      </if>
+      <if test="receiptCityId != null" >
+        RECEIPT_CITY_ID = #{receiptCityId,jdbcType=VARCHAR},
+      </if>
+      <if test="receiptCityName != null" >
+        RECEIPT_CITY_NAME = #{receiptCityName,jdbcType=VARCHAR},
+      </if>
+      <if test="receiptAreaId != null" >
+        RECEIPT_AREA_ID = #{receiptAreaId,jdbcType=VARCHAR},
+      </if>
+      <if test="receiptAreaName != null" >
+        RECEIPT_AREA_NAME = #{receiptAreaName,jdbcType=VARCHAR},
+      </if>
+      <if test="receiptDetailAddress != null" >
+        RECEIPT_DETAIL_ADDRESS = #{receiptDetailAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="receiptType != null" >
+        RECEIPT_TYPE = #{receiptType,jdbcType=VARCHAR},
+      </if>
+      <if test="identityId != null" >
+        IDENTITY_ID = #{identityId,jdbcType=VARCHAR},
+      </if>
+      <if test="isDefault != null" >
+        IS_DEFAULT = #{isDefault,jdbcType=VARCHAR},
+      </if>
+      <if test="createBy != null" >
+        CREATE_BY = #{createBy,jdbcType=VARCHAR},
+      </if>
+      <if test="createDate != null" >
+        CREATE_DATE = #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateBy != null" >
+        UPDATE_BY = #{updateBy,jdbcType=VARCHAR},
+      </if>
+      <if test="updateDate != null" >
+        UPDATE_DATE = #{updateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="delFlag != null" >
+        DEL_FLAG = #{delFlag,jdbcType=VARCHAR},
+      </if>
+      <if test="postCode != null" >
+        POST_CODE = #{postCode,jdbcType=VARCHAR},
+      </if>
+      <if test="spare != null" >
+        SPARE = #{spare,jdbcType=VARCHAR},
+      </if>
+      <if test="spare1 != null" >
+        SPARE1 = #{spare1,jdbcType=VARCHAR},
+      </if>
+      <if test="spare2 != null" >
+        SPARE2 = #{spare2,jdbcType=VARCHAR},
+      </if>
+    </set>
+     where DEL_FLAG='0'
+     	AND ID=#{id}
+	  	AND IDENTITY_ID=#{identityId}
+	  	AND RECEIPT_TYPE=#{receiptType}
+  </update>
+  <update id="delectAddress" parameterType="com.blomni.o2o.order.entity.OrderReceiptAddress" >
+    update ORDER_RECEIPT_ADDRESS
+    set
+        UPDATE_DATE = #{updateDate,jdbcType=TIMESTAMP},
+        DEL_FLAG = #{delFlag,jdbcType=VARCHAR}
+    where 
+    
+    ID=#{id,jdbcType=VARCHAR}
+    
+    AND DEL_FLAG='0'
+  </update>
+  
+  <update id="updateByIsDefaultAddress" parameterType="com.blomni.o2o.order.entity.OrderReceiptAddress" >
+  update ORDER_RECEIPT_ADDRESS
+    <set >
+        IS_DEFAULT = '0',
+        UPDATE_DATE = #{updateDate,jdbcType=TIMESTAMP}
+    </set>
+    where 
+    DEL_FLAG='0'
+    <if test="id != null and id !='' ">
+     AND ID = #{id,jdbcType=VARCHAR}
+    </if>
+    AND IDENTITY_ID=#{identityId}
+    
+  </update>
+  
+  <resultMap id="BaseResultCloudMap" type="com.blomni.o2o.order.dto.BLSCloudAddress" >
+    <id column="ID" property="addressId" jdbcType="VARCHAR" />
+    <result column="RECEIPT_NAME" property="receiverName" jdbcType="VARCHAR" />
+    <result column="RECEIPT_PHONE" property="receiverPhone" jdbcType="VARCHAR" />
+    <result column="IS_DEFAULT" property="defaultFlag" jdbcType="VARCHAR" />
+    
+    <result column="RECEIPT_PROVINCE_ID" property="provinceId" jdbcType="VARCHAR" />
+    <result column="RECEIPT_PROVINCE_NAME" property="provinceName" jdbcType="VARCHAR" />
+    <result column="RECEIPT_CITY_ID" property="cityId" jdbcType="VARCHAR" />
+    <result column="RECEIPT_CITY_NAME" property="cityName" jdbcType="VARCHAR" />
+    <result column="RECEIPT_AREA_ID" property="districtId" jdbcType="VARCHAR" />
+    <result column="RECEIPT_AREA_NAME" property="districtName" jdbcType="VARCHAR" />
+    <result column="RECEIPT_DETAIL_ADDRESS" property="address" jdbcType="VARCHAR" />
+    <result column="POST_CODE" property="zipcode" jdbcType="VARCHAR" />
+    
+  </resultMap>
+  
+  <select id="selectCloudMemberAddress" resultMap="BaseResultCloudMap" parameterType="com.blomni.o2o.order.dto.MemberAddressDto" >
+    select
+   
+      distinct
+    
+    <include refid="Base_Column_List" />
+    from ORDER_RECEIPT_ADDRESS
+    
+      <include refid="Example_Where_cloud_Clause" />
+    
+      order by IS_DEFAULT desc
+    
+  </select>
+  
+  <sql id="Example_Where_cloud_Clause">
+  	<where>
+	  	DEL_FLAG='0'
+	  	AND IDENTITY_ID=#{memberId}
+	  	AND RECEIPT_TYPE=#{receiptType}
+  	</where>
+  </sql>
+  
+  
+  <update id="updateMerchantAddress" parameterType="com.blomni.o2o.order.entity.OrderReceiptAddress" >
+  	update ORDER_RECEIPT_ADDRESS
+    <set >
+      <if test="receiptName != null" >
+        RECEIPT_NAME = #{receiptName,jdbcType=VARCHAR},
+      </if>
+      <if test="receiptPhone != null" >
+        RECEIPT_PHONE = #{receiptPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="receiptRegion != null" >
+        RECEIPT_REGION = #{receiptRegion,jdbcType=VARCHAR},
+      </if>
+      <if test="receiptProvinceId != null" >
+        RECEIPT_PROVINCE_ID = #{receiptProvinceId,jdbcType=VARCHAR},
+      </if>
+      <if test="receiptProvinceName != null" >
+        RECEIPT_PROVINCE_NAME = #{receiptProvinceName,jdbcType=VARCHAR},
+      </if>
+      <if test="receiptCityId != null" >
+        RECEIPT_CITY_ID = #{receiptCityId,jdbcType=VARCHAR},
+      </if>
+      <if test="receiptCityName != null" >
+        RECEIPT_CITY_NAME = #{receiptCityName,jdbcType=VARCHAR},
+      </if>
+      <if test="receiptAreaId != null" >
+        RECEIPT_AREA_ID = #{receiptAreaId,jdbcType=VARCHAR},
+      </if>
+      <if test="receiptAreaName != null" >
+        RECEIPT_AREA_NAME = #{receiptAreaName,jdbcType=VARCHAR},
+      </if>
+      <if test="receiptDetailAddress != null" >
+        RECEIPT_DETAIL_ADDRESS = #{receiptDetailAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="receiptType != null" >
+        RECEIPT_TYPE = #{receiptType,jdbcType=VARCHAR},
+      </if>
+      <if test="identityId != null" >
+        IDENTITY_ID = #{identityId,jdbcType=VARCHAR},
+      </if>
+      <if test="isDefault != null" >
+        IS_DEFAULT = #{isDefault,jdbcType=VARCHAR},
+      </if>
+      <if test="createBy != null" >
+        CREATE_BY = #{createBy,jdbcType=VARCHAR},
+      </if>
+      <if test="createDate != null" >
+        CREATE_DATE = #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateBy != null" >
+        UPDATE_BY = #{updateBy,jdbcType=VARCHAR},
+      </if>
+      <if test="updateDate != null" >
+        UPDATE_DATE = #{updateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="delFlag != null" >
+        DEL_FLAG = #{delFlag,jdbcType=VARCHAR},
+      </if>
+      <if test="postCode != null" >
+        POST_CODE = #{postCode,jdbcType=VARCHAR},
+      </if>
+      <if test="spare != null" >
+        SPARE = #{spare,jdbcType=VARCHAR},
+      </if>
+      <if test="spare1 != null" >
+        SPARE1 = #{spare1,jdbcType=VARCHAR},
+      </if>
+      <if test="spare2 != null" >
+        SPARE2 = #{spare2,jdbcType=VARCHAR},
+      </if>
+    </set>
+     where DEL_FLAG='0'
+	  	AND IDENTITY_ID=#{identityId}
+	  	AND RECEIPT_TYPE=#{receiptType}
+  </update>
+  
+</mapper>

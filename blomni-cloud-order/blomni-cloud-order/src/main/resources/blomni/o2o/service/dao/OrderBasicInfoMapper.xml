@@ -1,0 +1,736 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.blomni.o2o.order.mapper.OrderBasicInfoMapper">
+	<resultMap id="BaseResultMap" type="com.blomni.o2o.order.entity.OrderBasicInfo">
+		<id column="ID" property="id" jdbcType="VARCHAR" />
+		<result column="ORDER_CODE" property="orderCode" jdbcType="VARCHAR" />
+		<result column="ORDER_AMT" property="orderAmt" jdbcType="DECIMAL" />
+		<result column="ORDER_STATE" property="orderState" jdbcType="CHAR" />
+		<result column="MEMBER_NAME" property="memberName" jdbcType="VARCHAR" />
+		<result column="MEMBER_ID" property="memberId" jdbcType="VARCHAR" />
+		<result column="ORDER_SOURCE" property="orderSource" jdbcType="VARCHAR" />
+		<result column="ORDER_EXTERNAL_NO" property="orderExternalNo"
+			jdbcType="VARCHAR" />
+		<result column="ORDER_TYPE" property="orderType" jdbcType="CHAR" />
+		<result column="ORDER_EXCEPTION_FLAG" property="orderExceptionFlag"
+			jdbcType="CHAR" />
+		<result column="OUT_TIME" property="outTime" jdbcType="TIMESTAMP" />
+		<result column="BUYER_REMARK" property="buyerRemark" jdbcType="VARCHAR" />
+		<result column="SHOULD_MONEY" property="shouldMoney" jdbcType="DECIMAL" />
+		<result column="DELIVERY_TIME" property="deliveryTime"
+			jdbcType="CHAR" />
+		<result column="FAVORABLE_MONEY" property="favorableMoney"
+			jdbcType="DECIMAL" />
+		<result column="CONSIGNEE_ADDRESS" property="consigneeAddress"
+			jdbcType="VARCHAR" />
+		<result column="CONSIGNEE_PHONE" property="consigneePhone"
+			jdbcType="VARCHAR" />
+		<result column="CONSIGNEE_NAME" property="consigneeName"
+			jdbcType="VARCHAR" />
+		<result column="CARRIAGE_MONEY" property="carriageMoney"
+			jdbcType="DECIMAL" />
+		<result column="SALES_NUMBER" property="salesNumber" jdbcType="VARCHAR" />
+		<result column="RECEIPT_URL" property="receiptUrl" jdbcType="VARCHAR" />
+		<result column="SELLER_REMARK" property="sellerRemark"
+			jdbcType="VARCHAR" />
+		<result column="DISTRIBUTION_MODE" property="distributionMode"
+			jdbcType="CHAR" />
+		<result column="CLOSING_REASON" property="closingReason"
+			jdbcType="VARCHAR" />
+		<result column="UPDATE_BY" property="updateBy" jdbcType="VARCHAR" />
+		<result column="UPDATE_DATE" property="updateDate" jdbcType="TIMESTAMP" />
+		<result column="CREATE_BY" property="createBy" jdbcType="VARCHAR" />
+		<result column="CREATE_DATE" property="createDate" jdbcType="TIMESTAMP" />
+		<result column="DEL_FLAG" property="delFlag" jdbcType="CHAR" />
+		<result column="SPARE1" property="spare1" jdbcType="VARCHAR" />
+		<result column="SPARE2" property="spare2" jdbcType="VARCHAR" />
+		<result column="SPARE3" property="spare3" jdbcType="VARCHAR" />
+		<result column="INVOICE_TYPE" property="invoiceType" jdbcType="VARCHAR" />
+	</resultMap>
+
+	<resultMap id="resultMap" type="com.blomni.o2o.order.vo.QueryOrderListVo">
+		<result column="BUYER_REMARK" property="buyerRemark" jdbcType="VARCHAR" />
+		<result column="ID" property="orderId" jdbcType="VARCHAR" />
+		<result column="CREATE_DATE" property="lowerOrderTime"
+			jdbcType="TIMESTAMP" />
+		<result column="MEMBER_ID" property="memberId" jdbcType="VARCHAR" />
+		<result column="MEMBER_NAME" property="memberName" jdbcType="VARCHAR" />
+		<result column="ORDER_CODE" property="orderNo" jdbcType="VARCHAR" />
+		<result column="SELLER_REMARK" property="sellerRemark"
+			jdbcType="VARCHAR" />
+		<result column="SHOULD_MONEY" property="shouldMoney" jdbcType="VARCHAR" />
+		<result column="OUT_TIME" property="timeOut" jdbcType="VARCHAR" />
+		<result column="ORDER_STATE" property="orderState" jdbcType="CHAR" />
+	</resultMap>
+	<resultMap type="com.blomni.o2o.order.vo.GetCountForOrderStateVo"
+		id="resultMapCount">
+		<result column="ORDER_STATE" property="orderType" jdbcType="VARCHAR" />
+		<result column="ID" property="orderCount" jdbcType="DECIMAL" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		 ID, ORDER_CODE, ORDER_AMT, ORDER_STATE, MEMBER_NAME, MEMBER_ID, ORDER_SOURCE, ORDER_EXTERNAL_NO, 
+    ORDER_TYPE, ORDER_EXCEPTION_FLAG, OUT_TIME, BUYER_REMARK, SHOULD_MONEY, DELIVERY_TIME, 
+    FAVORABLE_MONEY, CONSIGNEE_ADDRESS, CONSIGNEE_PHONE, CONSIGNEE_NAME, CARRIAGE_MONEY, 
+    SALES_NUMBER, RECEIPT_URL, SELLER_REMARK, DISTRIBUTION_MODE, INVOICE_TYPE, CLOSING_REASON, 
+    UPDATE_BY, UPDATE_DATE, CREATE_BY, CREATE_DATE, DEL_FLAG, SPARE1, SPARE2, SPARE3
+	</sql>
+	<select id="selectByPrimaryKey" resultMap="BaseResultMap"
+		parameterType="java.lang.String">
+		select
+		<include refid="Base_Column_List" />
+		from ORDER_BASIC_INFO
+		where ID = #{id,jdbcType=VARCHAR}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+		delete from ORDER_BASIC_INFO
+		where ID = #{id,jdbcType=VARCHAR}
+	</delete>
+	<insert id="insert" parameterType="com.blomni.o2o.order.entity.OrderBasicInfo">
+		 insert into ORDER_BASIC_INFO (ID, ORDER_CODE, ORDER_AMT, 
+      ORDER_STATE, MEMBER_NAME, MEMBER_ID, 
+      ORDER_SOURCE, ORDER_EXTERNAL_NO, ORDER_TYPE, 
+      ORDER_EXCEPTION_FLAG, OUT_TIME, BUYER_REMARK, 
+      SHOULD_MONEY, DELIVERY_TIME, FAVORABLE_MONEY, 
+      CONSIGNEE_ADDRESS, CONSIGNEE_PHONE, CONSIGNEE_NAME, 
+      CARRIAGE_MONEY, SALES_NUMBER, RECEIPT_URL, 
+      SELLER_REMARK, DISTRIBUTION_MODE, INVOICE_TYPE, 
+      CLOSING_REASON, UPDATE_BY, UPDATE_DATE, 
+      CREATE_BY, CREATE_DATE, DEL_FLAG, 
+      SPARE1, SPARE2, SPARE3
+      )
+    values (#{id,jdbcType=VARCHAR}, #{orderCode,jdbcType=VARCHAR}, #{orderAmt,jdbcType=DECIMAL}, 
+      #{orderState,jdbcType=CHAR}, #{memberName,jdbcType=VARCHAR}, #{memberId,jdbcType=VARCHAR}, 
+      #{orderSource,jdbcType=VARCHAR}, #{orderExternalNo,jdbcType=VARCHAR}, #{orderType,jdbcType=CHAR}, 
+      #{orderExceptionFlag,jdbcType=CHAR}, #{outTime,jdbcType=TIMESTAMP}, #{buyerRemark,jdbcType=VARCHAR}, 
+      #{shouldMoney,jdbcType=DECIMAL}, #{deliveryTime,jdbcType=CHAR}, #{favorableMoney,jdbcType=DECIMAL}, 
+      #{consigneeAddress,jdbcType=VARCHAR}, #{consigneePhone,jdbcType=VARCHAR}, #{consigneeName,jdbcType=VARCHAR}, 
+      #{carriageMoney,jdbcType=DECIMAL}, #{salesNumber,jdbcType=VARCHAR}, #{receiptUrl,jdbcType=VARCHAR}, 
+      #{sellerRemark,jdbcType=VARCHAR}, #{distributionMode,jdbcType=CHAR}, #{invoiceType,jdbcType=VARCHAR}, 
+      #{closingReason,jdbcType=VARCHAR}, #{updateBy,jdbcType=VARCHAR}, #{updateDate,jdbcType=TIMESTAMP}, 
+      #{createBy,jdbcType=VARCHAR}, #{createDate,jdbcType=TIMESTAMP}, #{delFlag,jdbcType=CHAR}, 
+      #{spare1,jdbcType=VARCHAR}, #{spare2,jdbcType=VARCHAR}, #{spare3,jdbcType=VARCHAR}
+      )
+	</insert>
+	<insert id="insertSelective" parameterType="com.blomni.o2o.order.entity.OrderBasicInfo">
+		  insert into ORDER_BASIC_INFO
+		    <trim prefix="(" suffix=")" suffixOverrides="," >
+		      <if test="id != null" >
+		        ID,
+		      </if>
+		      <if test="orderCode != null" >
+		        ORDER_CODE,
+		      </if>
+		      <if test="orderAmt != null" >
+		        ORDER_AMT,
+		      </if>
+		      <if test="orderState != null" >
+		        ORDER_STATE,
+		      </if>
+		      <if test="memberName != null" >
+		        MEMBER_NAME,
+		      </if>
+		      <if test="memberId != null" >
+		        MEMBER_ID,
+		      </if>
+		      <if test="orderSource != null" >
+		        ORDER_SOURCE,
+		      </if>
+		      <if test="orderExternalNo != null" >
+		        ORDER_EXTERNAL_NO,
+		      </if>
+		      <if test="orderType != null" >
+		        ORDER_TYPE,
+		      </if>
+		      <if test="orderExceptionFlag != null" >
+		        ORDER_EXCEPTION_FLAG,
+		      </if>
+		      <if test="outTime != null" >
+		        OUT_TIME,
+		      </if>
+		      <if test="buyerRemark != null" >
+		        BUYER_REMARK,
+		      </if>
+		      <if test="shouldMoney != null" >
+		        SHOULD_MONEY,
+		      </if>
+		      <if test="deliveryTime != null" >
+		        DELIVERY_TIME,
+		      </if>
+		      <if test="favorableMoney != null" >
+		        FAVORABLE_MONEY,
+		      </if>
+		      <if test="consigneeAddress != null" >
+		        CONSIGNEE_ADDRESS,
+		      </if>
+		      <if test="consigneePhone != null" >
+		        CONSIGNEE_PHONE,
+		      </if>
+		      <if test="consigneeName != null" >
+		        CONSIGNEE_NAME,
+		      </if>
+		      <if test="carriageMoney != null" >
+		        CARRIAGE_MONEY,
+		      </if>
+		      <if test="salesNumber != null" >
+		        SALES_NUMBER,
+		      </if>
+		      <if test="receiptUrl != null" >
+		        RECEIPT_URL,
+		      </if>
+		      <if test="sellerRemark != null" >
+		        SELLER_REMARK,
+		      </if>
+		      <if test="distributionMode != null" >
+		        DISTRIBUTION_MODE,
+		      </if>
+		      <if test="invoiceType != null" >
+		        INVOICE_TYPE,
+		      </if>
+		      <if test="closingReason != null" >
+		        CLOSING_REASON,
+		      </if>
+		      <if test="updateBy != null" >
+		        UPDATE_BY,
+		      </if>
+		      <if test="updateDate != null" >
+		        UPDATE_DATE,
+		      </if>
+		      <if test="createBy != null" >
+		        CREATE_BY,
+		      </if>
+		      <if test="createDate != null" >
+		        CREATE_DATE,
+		      </if>
+		      <if test="delFlag != null" >
+		        DEL_FLAG,
+		      </if>
+		      <if test="spare1 != null" >
+		        SPARE1,
+		      </if>
+		      <if test="spare2 != null" >
+		        SPARE2,
+		      </if>
+		      <if test="spare3 != null" >
+		        SPARE3,
+		      </if>
+		    </trim>
+		    <trim prefix="values (" suffix=")" suffixOverrides="," >
+		      <if test="id != null" >
+		        #{id,jdbcType=VARCHAR},
+		      </if>
+		      <if test="orderCode != null" >
+		        #{orderCode,jdbcType=VARCHAR},
+		      </if>
+		      <if test="orderAmt != null" >
+		        #{orderAmt,jdbcType=DECIMAL},
+		      </if>
+		      <if test="orderState != null" >
+		        #{orderState,jdbcType=CHAR},
+		      </if>
+		      <if test="memberName != null" >
+		        #{memberName,jdbcType=VARCHAR},
+		      </if>
+		      <if test="memberId != null" >
+		        #{memberId,jdbcType=VARCHAR},
+		      </if>
+		      <if test="orderSource != null" >
+		        #{orderSource,jdbcType=VARCHAR},
+		      </if>
+		      <if test="orderExternalNo != null" >
+		        #{orderExternalNo,jdbcType=VARCHAR},
+		      </if>
+		      <if test="orderType != null" >
+		        #{orderType,jdbcType=CHAR},
+		      </if>
+		      <if test="orderExceptionFlag != null" >
+		        #{orderExceptionFlag,jdbcType=CHAR},
+		      </if>
+		      <if test="outTime != null" >
+		        #{outTime,jdbcType=TIMESTAMP},
+		      </if>
+		      <if test="buyerRemark != null" >
+		        #{buyerRemark,jdbcType=VARCHAR},
+		      </if>
+		      <if test="shouldMoney != null" >
+		        #{shouldMoney,jdbcType=DECIMAL},
+		      </if>
+		      <if test="deliveryTime != null" >
+		        #{deliveryTime,jdbcType=CHAR},
+		      </if>
+		      <if test="favorableMoney != null" >
+		        #{favorableMoney,jdbcType=DECIMAL},
+		      </if>
+		      <if test="consigneeAddress != null" >
+		        #{consigneeAddress,jdbcType=VARCHAR},
+		      </if>
+		      <if test="consigneePhone != null" >
+		        #{consigneePhone,jdbcType=VARCHAR},
+		      </if>
+		      <if test="consigneeName != null" >
+		        #{consigneeName,jdbcType=VARCHAR},
+		      </if>
+		      <if test="carriageMoney != null" >
+		        #{carriageMoney,jdbcType=DECIMAL},
+		      </if>
+		      <if test="salesNumber != null" >
+		        #{salesNumber,jdbcType=VARCHAR},
+		      </if>
+		      <if test="receiptUrl != null" >
+		        #{receiptUrl,jdbcType=VARCHAR},
+		      </if>
+		      <if test="sellerRemark != null" >
+		        #{sellerRemark,jdbcType=VARCHAR},
+		      </if>
+		      <if test="distributionMode != null" >
+		        #{distributionMode,jdbcType=CHAR},
+		      </if>
+		      <if test="invoiceType != null" >
+		        #{invoiceType,jdbcType=VARCHAR},
+		      </if>
+		      <if test="closingReason != null" >
+		        #{closingReason,jdbcType=VARCHAR},
+		      </if>
+		      <if test="updateBy != null" >
+		        #{updateBy,jdbcType=VARCHAR},
+		      </if>
+		      <if test="updateDate != null" >
+		        #{updateDate,jdbcType=TIMESTAMP},
+		      </if>
+		      <if test="createBy != null" >
+		        #{createBy,jdbcType=VARCHAR},
+		      </if>
+		      <if test="createDate != null" >
+		        #{createDate,jdbcType=TIMESTAMP},
+		      </if>
+		      <if test="delFlag != null" >
+		        #{delFlag,jdbcType=CHAR},
+		      </if>
+		      <if test="spare1 != null" >
+		        #{spare1,jdbcType=VARCHAR},
+		      </if>
+		      <if test="spare2 != null" >
+		        #{spare2,jdbcType=VARCHAR},
+		      </if>
+		      <if test="spare3 != null" >
+		        #{spare3,jdbcType=VARCHAR},
+		      </if>
+		    </trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="com.blomni.o2o.order.entity.OrderBasicInfo">
+		update ORDER_BASIC_INFO
+			<set >
+	      <if test="orderAmt != null" >
+	        ORDER_AMT = #{orderAmt,jdbcType=DECIMAL},
+	      </if>
+	      <if test="orderState != null" >
+	        ORDER_STATE = #{orderState,jdbcType=CHAR},
+	      </if>
+	      <if test="memberName != null" >
+	        MEMBER_NAME = #{memberName,jdbcType=VARCHAR},
+	      </if>
+	      <if test="memberId != null" >
+	        MEMBER_ID = #{memberId,jdbcType=VARCHAR},
+	      </if>
+	      <if test="orderSource != null" >
+	        ORDER_SOURCE = #{orderSource,jdbcType=VARCHAR},
+	      </if>
+	      <if test="orderExternalNo != null" >
+	        ORDER_EXTERNAL_NO = #{orderExternalNo,jdbcType=VARCHAR},
+	      </if>
+	      <if test="orderType != null" >
+	        ORDER_TYPE = #{orderType,jdbcType=CHAR},
+	      </if>
+	      <if test="orderExceptionFlag != null" >
+	        ORDER_EXCEPTION_FLAG = #{orderExceptionFlag,jdbcType=CHAR},
+	      </if>
+	      <if test="outTime != null" >
+	        OUT_TIME = #{outTime,jdbcType=TIMESTAMP},
+	      </if>
+	      <if test="buyerRemark != null" >
+	        BUYER_REMARK = #{buyerRemark,jdbcType=VARCHAR},
+	      </if>
+	      <if test="shouldMoney != null" >
+	        SHOULD_MONEY = #{shouldMoney,jdbcType=DECIMAL},
+	      </if>
+	      <if test="deliveryTime != null" >
+	        DELIVERY_TIME = #{deliveryTime,jdbcType=CHAR},
+	      </if>
+	      <if test="favorableMoney != null" >
+	        FAVORABLE_MONEY = #{favorableMoney,jdbcType=DECIMAL},
+	      </if>
+	      <if test="consigneeAddress != null" >
+	        CONSIGNEE_ADDRESS = #{consigneeAddress,jdbcType=VARCHAR},
+	      </if>
+	      <if test="consigneePhone != null" >
+	        CONSIGNEE_PHONE = #{consigneePhone,jdbcType=VARCHAR},
+	      </if>
+	      <if test="consigneeName != null" >
+	        CONSIGNEE_NAME = #{consigneeName,jdbcType=VARCHAR},
+	      </if>
+	      <if test="carriageMoney != null" >
+	        CARRIAGE_MONEY = #{carriageMoney,jdbcType=DECIMAL},
+	      </if>
+	      <if test="salesNumber != null" >
+	        SALES_NUMBER = #{salesNumber,jdbcType=VARCHAR},
+	      </if>
+	      <if test="receiptUrl != null" >
+	        RECEIPT_URL = #{receiptUrl,jdbcType=VARCHAR},
+	      </if>
+	      <if test="sellerRemark != null" >
+	        SELLER_REMARK = #{sellerRemark,jdbcType=VARCHAR},
+	      </if>
+	      <if test="distributionMode != null" >
+	        DISTRIBUTION_MODE = #{distributionMode,jdbcType=CHAR},
+	      </if>
+	      <if test="invoiceType != null" >
+	        INVOICE_TYPE = #{invoiceType,jdbcType=VARCHAR},
+	      </if>
+	      <if test="closingReason != null" >
+	        CLOSING_REASON = #{closingReason,jdbcType=VARCHAR},
+	      </if>
+	      <if test="updateBy != null" >
+	        UPDATE_BY = #{updateBy,jdbcType=VARCHAR},
+	      </if>
+	      <if test="updateDate != null" >
+	        UPDATE_DATE = #{updateDate,jdbcType=TIMESTAMP},
+	      </if>
+	      <if test="createBy != null" >
+	        CREATE_BY = #{createBy,jdbcType=VARCHAR},
+	      </if>
+	      <if test="createDate != null" >
+	        CREATE_DATE = #{createDate,jdbcType=TIMESTAMP},
+	      </if>
+	      <if test="delFlag != null" >
+	        DEL_FLAG = #{delFlag,jdbcType=CHAR},
+	      </if>
+	      <if test="spare1 != null" >
+	        SPARE1 = #{spare1,jdbcType=VARCHAR},
+	      </if>
+	      <if test="spare2 != null" >
+	        SPARE2 = #{spare2,jdbcType=VARCHAR},
+	      </if>
+	      <if test="spare3 != null" >
+	        SPARE3 = #{spare3,jdbcType=VARCHAR},
+	      </if>
+	    </set>
+		where ID = #{id,jdbcType=VARCHAR}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="com.blomni.o2o.order.entity.OrderBasicInfo">
+		update ORDER_BASIC_INFO
+		set ORDER_AMT = #{orderAmt,jdbcType=DECIMAL},
+      ORDER_STATE = #{orderState,jdbcType=CHAR},
+      MEMBER_NAME = #{memberName,jdbcType=VARCHAR},
+      MEMBER_ID = #{memberId,jdbcType=VARCHAR},
+      ORDER_SOURCE = #{orderSource,jdbcType=VARCHAR},
+      ORDER_EXTERNAL_NO = #{orderExternalNo,jdbcType=VARCHAR},
+      ORDER_TYPE = #{orderType,jdbcType=CHAR},
+      ORDER_EXCEPTION_FLAG = #{orderExceptionFlag,jdbcType=CHAR},
+      OUT_TIME = #{outTime,jdbcType=TIMESTAMP},
+      BUYER_REMARK = #{buyerRemark,jdbcType=VARCHAR},
+      SHOULD_MONEY = #{shouldMoney,jdbcType=DECIMAL},
+      DELIVERY_TIME = #{deliveryTime,jdbcType=CHAR},
+      FAVORABLE_MONEY = #{favorableMoney,jdbcType=DECIMAL},
+      CONSIGNEE_ADDRESS = #{consigneeAddress,jdbcType=VARCHAR},
+      CONSIGNEE_PHONE = #{consigneePhone,jdbcType=VARCHAR},
+      CONSIGNEE_NAME = #{consigneeName,jdbcType=VARCHAR},
+      CARRIAGE_MONEY = #{carriageMoney,jdbcType=DECIMAL},
+      SALES_NUMBER = #{salesNumber,jdbcType=VARCHAR},
+      RECEIPT_URL = #{receiptUrl,jdbcType=VARCHAR},
+      SELLER_REMARK = #{sellerRemark,jdbcType=VARCHAR},
+      DISTRIBUTION_MODE = #{distributionMode,jdbcType=CHAR},
+      INVOICE_TYPE = #{invoiceType,jdbcType=VARCHAR},
+      CLOSING_REASON = #{closingReason,jdbcType=VARCHAR},
+      UPDATE_BY = #{updateBy,jdbcType=VARCHAR},
+      UPDATE_DATE = #{updateDate,jdbcType=TIMESTAMP},
+      CREATE_BY = #{createBy,jdbcType=VARCHAR},
+      CREATE_DATE = #{createDate,jdbcType=TIMESTAMP},
+      DEL_FLAG = #{delFlag,jdbcType=CHAR},
+      SPARE1 = #{spare1,jdbcType=VARCHAR},
+      SPARE2 = #{spare2,jdbcType=VARCHAR},
+      SPARE3 = #{spare3,jdbcType=VARCHAR}
+		where ID = #{id,jdbcType=VARCHAR}
+	</update>
+	<select id="selectByOrderBasicInfo" resultMap="BaseResultMap"
+		parameterType="com.blomni.o2o.order.entity.OrderBasicInfo">
+		select
+		<if test="distinct">
+			distinct
+		</if>
+		<include refid="Base_Column_List" />
+		from ORDER_BASIC_INFO
+
+		<include refid="Example_Where_Clause" />
+
+		order by CREATE_DATE
+
+	</select>
+	<sql id="Example_Where_Clause">
+		<where>
+			DEL_FLAG='0'
+		</where>
+	</sql>
+
+
+	<!-- 根据商户编号 修改状态 -->
+	<update id="updateByOrderCode" parameterType="com.blomni.o2o.order.entity.OrderBasicInfo">
+		update ORDER_BASIC_INFO
+		<set>
+			<if test="orderAmt != null">
+				ORDER_AMT = #{orderAmt,jdbcType=DECIMAL},
+			</if>
+			<if test="orderState != null">
+				ORDER_STATE = #{orderState,jdbcType=CHAR},
+			</if>
+			<if test="memberName != null">
+				MEMBER_NAME = #{memberName,jdbcType=VARCHAR},
+			</if>
+			<if test="memberId != null">
+				MEMBER_ID = #{memberId,jdbcType=VARCHAR},
+			</if>
+			<if test="orderSource != null">
+				ORDER_SOURCE = #{orderSource,jdbcType=VARCHAR},
+			</if>
+			<if test="orderExternalNo != null">
+				ORDER_EXTERNAL_NO = #{orderExternalNo,jdbcType=VARCHAR},
+			</if>
+			<if test="orderType != null">
+				ORDER_TYPE = #{orderType,jdbcType=CHAR},
+			</if>
+			<if test="orderExceptionFlag != null">
+				ORDER_EXCEPTION_FLAG = #{orderExceptionFlag,jdbcType=CHAR},
+			</if>
+			<if test="outTime != null">
+				OUT_TIME = #{outTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="buyerRemark != null">
+				BUYER_REMARK = #{buyerRemark,jdbcType=VARCHAR},
+			</if>
+			<if test="shouldMoney != null">
+				SHOULD_MONEY = #{shouldMoney,jdbcType=DECIMAL},
+			</if>
+			<if test="deliveryTime != null">
+				DELIVERY_TIME = #{deliveryTime,jdbcType=CHAR},
+			</if>
+			<if test="favorableMoney != null">
+				FAVORABLE_MONEY = #{favorableMoney,jdbcType=DECIMAL},
+			</if>
+			<if test="consigneeAddress != null">
+				CONSIGNEE_ADDRESS = #{consigneeAddress,jdbcType=VARCHAR},
+			</if>
+			<if test="consigneePhone != null">
+				CONSIGNEE_PHONE = #{consigneePhone,jdbcType=VARCHAR},
+			</if>
+			<if test="consigneeName != null">
+				CONSIGNEE_NAME = #{consigneeName,jdbcType=VARCHAR},
+			</if>
+			<if test="carriageMoney != null">
+				CARRIAGE_MONEY = #{carriageMoney,jdbcType=DECIMAL},
+			</if>
+			<if test="salesNumber != null">
+				SALES_NUMBER = #{salesNumber,jdbcType=VARCHAR},
+			</if>
+			<if test="receiptUrl != null">
+				RECEIPT_URL = #{receiptUrl,jdbcType=VARCHAR},
+			</if>
+			<if test="sellerRemark != null">
+				SELLER_REMARK = #{sellerRemark,jdbcType=VARCHAR},
+			</if>
+			<if test="distributionMode != null">
+				DISTRIBUTION_MODE = #{distributionMode,jdbcType=CHAR},
+			</if>
+			<if test="closingReason != null">
+				CLOSING_REASON = #{closingReason,jdbcType=VARCHAR},
+			</if>
+			<if test="updateBy != null">
+				UPDATE_BY = #{updateBy,jdbcType=VARCHAR},
+			</if>
+			<if test="updateDate != null">
+				UPDATE_DATE = #{updateDate,jdbcType=TIMESTAMP},
+			</if>
+			<if test="createBy != null">
+				CREATE_BY = #{createBy,jdbcType=VARCHAR},
+			</if>
+			<if test="createDate != null">
+				CREATE_DATE = #{createDate,jdbcType=TIMESTAMP},
+			</if>
+			<if test="delFlag != null">
+				DEL_FLAG = #{delFlag,jdbcType=CHAR},
+			</if>
+			<if test="spare1 != null">
+				SPARE1 = #{spare1,jdbcType=VARCHAR},
+			</if>
+			<if test="spare2 != null">
+				SPARE2 = #{spare2,jdbcType=VARCHAR},
+			</if>
+			<if test="spare3 != null">
+				SPARE3 = #{spare3,jdbcType=VARCHAR},
+			</if>
+		</set>
+		where ORDER_CODE = #{orderCode,jdbcType=VARCHAR}
+	</update>
+
+	<select id="selectByOrderCode" resultMap="BaseResultMap"
+		parameterType="java.lang.String">
+		select
+		<include refid="Base_Column_List" />
+		from ORDER_BASIC_INFO
+		where ORDER_CODE = #{orderCode,jdbcType=VARCHAR} and DEL_FLAG = '0'
+	</select>
+
+	<select id="getCountForOrderState" resultMap="resultMapCount"
+		parameterType="com.blomni.o2o.order.dto.GetCountForOrderStateDto">
+		SELECT
+		obi.ORDER_STATE as 'orderType',
+		count(obi.ID) as 'orderCount'
+		FROM
+		ORDER_BASIC_INFO obi
+		WHERE obi.DEL_FLAG = '0' AND obi.MEMBER_ID = #{memberId,jdbcType=VARCHAR}
+		GROUP BY obi.ORDER_STATE
+	</select>
+
+	<select id="getOrderList" resultMap="resultMap" parameterType="com.blomni.o2o.order.dto.QueryOrderListDto">
+		SELECT
+			obi.BUYER_REMARK as 'buyerRemark',
+			od.id as 'orderId',
+			obi.CREATE_DATE as 'lowerOrderTime',
+			obi.MEMBER_ID as 'memberId',
+			obi.MEMBER_NAME as 'memberName',
+			obi.ORDER_CODE as 'orderNo',
+			obi.SELLER_REMARK as 'sellerRemark',
+			obi.SHOULD_MONEY as 'shouldMoney',
+			obi.ORDER_STATE as 'orderState',
+			UNIX_TIMESTAMP(obi.OUT_TIME) as 'timeOut'
+		FROM ORDER_BASIC_INFO obi
+			INNER JOIN ORDER_DETAILS od ON od.ORDER_ID = obi.ID
+		WHERE obi.DEL_FLAG = '0' 
+		<if test="memberId != null">
+			AND obi.MEMBER_ID = #{memberId,jdbcType=VARCHAR}
+		</if>
+		<if test="orderState != null">
+			and obi.ORDER_STATE = #{orderState,jdbcType=VARCHAR}
+		</if>
+	</select>
+
+	<!-- 根据订单状态得到超时时间有没有超时 -->
+	<select id="selectByOrderStatus" resultType="java.lang.String">
+		select
+		id
+		from ORDER_BASIC_INFO
+		where ORDER_STATE = #{0} and OUT_TIME &lt; #{1}
+	</select>
+
+	<!-- 根据订单号批量更新状态为交易关闭 -->
+	<update id="updateBatchByOrderId" parameterType="java.util.List">
+		update ORDER_BASIC_INFO
+		set 
+		ORDER_STATE = '07'
+		where  ID in 
+		<foreach collection="list" index="index" item="item" separator="," open="(" close=")">
+      		#{item,jdbcType=VARCHAR}
+  		</foreach>
+	</update>
+	
+	
+<resultMap id="BaseResultMap_List" type="com.blomni.o2o.order.vo.BLSCloudOrderVo" >
+ 
+    <result column="ORDER_CODE" property="orderId" jdbcType="VARCHAR" />
+    <result column="ORDER_TYPE" property="orderType" jdbcType="CHAR" />
+    <result column="ORDER_AMT" property="orderAmount" jdbcType="DECIMAL" />
+    <result column="FAVORABLE_MONEY" property="discountAmount" jdbcType="DECIMAL" />
+    <result column="SHOULD_MONEY" property="payAmount" jdbcType="DECIMAL" />
+    <result column="CARRIAGE_MONEY" property="deliveryAmount" jdbcType="DECIMAL" />
+    <result column="ORDER_STATE" property="orderStatus" jdbcType="DECIMAL" />
+    <result column="ID" property="id" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Order_List">
+ 
+  a.ORDER_CODE as orderId, a.ORDER_TYPE as orderType, a.ORDER_AMT as orderAmount, a.FAVORABLE_MONEY as discountAmount,
+  a.SHOULD_MONEY as payAmount, a.CARRIAGE_MONEY as deliveryAmount, a.ORDER_STATE as orderStatus,b.ID AS id
+ 
+  </sql>
+  
+    <select id="selectQueryOrderList" resultMap="BaseResultMap_List" parameterType="com.blomni.o2o.order.dto.SelectQueryOrderDto" >
+    select 
+    <include refid="Base_Order_List" />
+    from ORDER_BASIC_INFO a
+    LEFT JOIN ORDER_DETAILS b ON a.ID=b.ORDER_ID
+   <include refid="Base_Where_Order_List" />
+   order by a.CREATE_DATE desc
+  </select>
+  
+  <sql id="Base_Where_Order_List">
+  	<where>
+  		a.DEL_FLAG='0'
+		AND b.DEL_FLAG='0'
+		<if test="orderStatus != null and orderStatus!=''">
+		AND a.ORDER_STATE=#{orderStatus}
+		</if>
+		<if test="memberId != null and memberId!=''">
+		AND a.MEMBER_ID=#{memberId}
+		</if>
+		
+  	</where>
+  </sql>
+
+  <sql id="Base_Details_List">
+ 	a.ORDER_CODE AS orderId,
+	a.SALES_NUMBER AS saleNo,
+	a.CONSIGNEE_ADDRESS AS receiverAddress,
+	a.CONSIGNEE_NAME AS receiverName,
+	a.CONSIGNEE_PHONE AS receiverPhone,
+	a.DISTRIBUTION_MODE AS sendType,
+	a.DELIVERY_TIME AS sendTime,
+	a.INVOICE_TYPE AS invoiceType,
+	a.RECEIPT_URL AS invoiceImgUrl,
+	a.ORDER_TYPE AS orderType,
+	a.ORDER_AMT AS orderAmount,
+	a.FAVORABLE_MONEY AS discountAmount,
+	a.SHOULD_MONEY AS payAmount,
+	a.CARRIAGE_MONEY AS deliveryAmount,
+	UNIX_TIMESTAMP(a.CREATE_DATE) AS submitOrderDate,
+	a.ORDER_STATE AS orderStatus,
+	a.BUYER_REMARK AS orderRemark,
+	d.ID AS id
+ 
+  </sql>
+  <select id="selectQueryOrderDetails" resultType="com.blomni.o2o.order.vo.QueryOrderDetailsVo" parameterType="com.blomni.o2o.order.dto.SelectQueryOrderDto">
+  	select  
+			a.ORDER_CODE AS orderId,
+			a.SALES_NUMBER AS saleNo,
+			a.CONSIGNEE_ADDRESS AS receiverAddress,
+			a.CONSIGNEE_NAME AS receiverName,
+			a.CONSIGNEE_PHONE AS receiverPhone,
+			a.DISTRIBUTION_MODE AS sendType,
+			a.DELIVERY_TIME AS sendTime,
+			a.INVOICE_TYPE AS invoiceType,
+			a.RECEIPT_URL AS invoiceImgUrl,
+			a.ORDER_TYPE AS orderType,
+			a.ORDER_AMT AS orderAmount,
+			a.FAVORABLE_MONEY AS discountAmount,
+			a.SHOULD_MONEY AS payAmount,
+			a.CARRIAGE_MONEY AS deliveryAmount,
+			 (unix_timestamp(a.CREATE_DATE)*1000) AS submitOrderDate,
+			a.ORDER_STATE AS orderStatus,
+			a.BUYER_REMARK AS orderRemark,
+			d.ID AS id
+		from ORDER_BASIC_INFO  a
+			LEFT JOIN ORDER_DETAILS d ON a.ID = d.ORDER_ID
+		<include refid="Base_Where_Order_Details"/> 
+
+  </select>
+  
+  <sql id="Base_Where_Order_Details">
+  	<where>
+	  	a.DEL_FLAG="0"
+		AND d.DEL_FLAG='0'
+		<if test="memberId != null and memberId!=''">
+		AND a.MEMBER_ID=#{memberId}
+		</if>
+		
+		<if test="orderId != null and orderId!=''">
+		AND a.ORDER_CODE=#{orderId}
+		</if>
+  	</where>
+  </sql>
+
+</mapper>

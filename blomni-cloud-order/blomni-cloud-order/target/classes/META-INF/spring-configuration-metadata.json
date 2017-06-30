@@ -1,0 +1,77 @@
+{
+  "groups": [{
+    "name": "mysqldb.datasource",
+    "type": "com.blomni.o2o.order.conf.DataSourceProperties",
+    "sourceType": "com.blomni.o2o.order.conf.DataSourceProperties"
+  }],
+  "properties": [
+    {
+      "name": "mysqldb.datasource.driver-class-name",
+      "type": "java.lang.String",
+      "sourceType": "com.blomni.o2o.order.conf.DataSourceProperties",
+      "defaultValue": "com.mysql.jdbc.Driver"
+    },
+    {
+      "name": "mysqldb.datasource.initial-size",
+      "type": "java.lang.Integer",
+      "sourceType": "com.blomni.o2o.order.conf.DataSourceProperties",
+      "defaultValue": 10
+    },
+    {
+      "name": "mysqldb.datasource.max-active",
+      "type": "java.lang.Integer",
+      "sourceType": "com.blomni.o2o.order.conf.DataSourceProperties",
+      "defaultValue": 100
+    },
+    {
+      "name": "mysqldb.datasource.max-idle",
+      "type": "java.lang.Integer",
+      "sourceType": "com.blomni.o2o.order.conf.DataSourceProperties",
+      "defaultValue": 8
+    },
+    {
+      "name": "mysqldb.datasource.min-idle",
+      "type": "java.lang.Integer",
+      "sourceType": "com.blomni.o2o.order.conf.DataSourceProperties",
+      "defaultValue": 8
+    },
+    {
+      "name": "mysqldb.datasource.password",
+      "type": "java.lang.String",
+      "sourceType": "com.blomni.o2o.order.conf.DataSourceProperties"
+    },
+    {
+      "name": "mysqldb.datasource.test-on-borrow",
+      "type": "java.lang.Boolean",
+      "sourceType": "com.blomni.o2o.order.conf.DataSourceProperties",
+      "defaultValue": false
+    },
+    {
+      "name": "mysqldb.datasource.test-on-return",
+      "type": "java.lang.Boolean",
+      "sourceType": "com.blomni.o2o.order.conf.DataSourceProperties",
+      "defaultValue": false
+    },
+    {
+      "name": "mysqldb.datasource.url",
+      "type": "java.lang.String",
+      "sourceType": "com.blomni.o2o.order.conf.DataSourceProperties"
+    },
+    {
+      "name": "mysqldb.datasource.username",
+      "type": "java.lang.String",
+      "sourceType": "com.blomni.o2o.order.conf.DataSourceProperties"
+    },
+    {
+      "name": "mysqldb.datasource.validation-query",
+      "type": "java.lang.String",
+      "sourceType": "com.blomni.o2o.order.conf.DataSourceProperties"
+    },
+    {
+      "name": "mysqldb.datasource.workurl",
+      "type": "java.lang.String",
+      "sourceType": "com.blomni.o2o.order.conf.DataSourceProperties"
+    }
+  ],
+  "hints": []
+}

@@ -1,0 +1,9 @@
+Manifest-Version: 1.0
+Implementation-Vendor: Pivotal Software, Inc.
+Implementation-Title: blomni-config-server
+Implementation-Version: 0.0.1
+Implementation-Vendor-Id: cloud
+Build-Jdk: 1.7.0_67
+Built-By: TLQ45
+Created-By: Maven Integration for Eclipse
+

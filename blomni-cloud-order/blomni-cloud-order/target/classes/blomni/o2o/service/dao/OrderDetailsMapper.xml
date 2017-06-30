@@ -1,0 +1,464 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.blomni.o2o.order.mapper.OrderDetailsMapper" >
+  <resultMap id="BaseResultMap" type="com.blomni.o2o.order.entity.OrderDetails" >
+    <id column="ID" property="id" jdbcType="VARCHAR" />
+    <result column="ORDER_ID" property="orderId" jdbcType="VARCHAR" />
+    <result column="GOODS_CODE" property="goodsCode" jdbcType="VARCHAR" />
+    <result column="GOODS_NAME" property="goodsName" jdbcType="VARCHAR" />
+    <result column="MARKET_PRICE" property="marketPrice" jdbcType="DECIMAL" />
+    <result column="WEIGHT" property="weight" jdbcType="DOUBLE" />
+    <result column="GOODS_NUM" property="goodsNum" jdbcType="INTEGER" />
+    <result column="SKU_ID" property="skuId" jdbcType="VARCHAR" />
+    <result column="SKU_NAME" property="skuName" jdbcType="VARCHAR" />
+    <result column="GOODS_ID" property="goodsId" jdbcType="VARCHAR" />
+    <result column="STORE_CODE" property="storeCode" jdbcType="VARCHAR" />
+    <result column="COMMERCIAL_TYPE" property="commercialType" jdbcType="VARCHAR" />
+    <result column="BRAND_NAME" property="brandName" jdbcType="VARCHAR" />
+    <result column="ORIGINAL_PRICE" property="originalPrice" jdbcType="DECIMAL" />
+    <result column="GOODS_STANDARD" property="goodsStandard" jdbcType="VARCHAR" />
+    <result column="DISCOUNT_PRICE" property="discountPrice" jdbcType="DECIMAL" />
+    <result column="BREVIARY_QUALITY_NAME" property="breviaryQualityName" jdbcType="VARCHAR" />
+    <result column="NORM_QUALITY_NAME" property="normQualityName" jdbcType="VARCHAR" />
+    <result column="GOODS_IMG" property="goodsImg" jdbcType="VARCHAR" />
+    <result column="STORE_NAME" property="storeName" jdbcType="VARCHAR" />
+    <result column="MERCHANT_ID" property="merchantId" jdbcType="VARCHAR" />
+    <result column="MERCHANT_NAME" property="merchantName" jdbcType="VARCHAR" />
+    <result column="MERCHANT_LOGO" property="merchantLogo" jdbcType="VARCHAR" />
+    <result column="DROP_PRICE" property="dropPrice" jdbcType="DECIMAL" />
+    <result column="UPDATE_BY" property="updateBy" jdbcType="VARCHAR" />
+    <result column="UPDATE_DATE" property="updateDate" jdbcType="TIMESTAMP" />
+    <result column="CREATE_BY" property="createBy" jdbcType="VARCHAR" />
+    <result column="CREATE_DATE" property="createDate" jdbcType="TIMESTAMP" />
+    <result column="DEL_FLAG" property="delFlag" jdbcType="CHAR" />
+    <result column="SPARE1" property="spare1" jdbcType="VARCHAR" />
+    <result column="SPARE2" property="spare2" jdbcType="VARCHAR" />
+    <result column="SPARE3" property="spare3" jdbcType="VARCHAR" />
+  </resultMap>
+  <resultMap id="resultMap" type="com.blomni.o2o.order.vo.GoodVo" >
+    <result column="GOODS_NAME" property="goodsName" jdbcType="VARCHAR" />
+    <result column="GOODS_NUM" property="goodsNum" jdbcType="INTEGER" />
+    <result column="SKU_ID" property="skuId" jdbcType="VARCHAR" />
+    <result column="SKU_NAME" property="skuName" jdbcType="VARCHAR" />
+    <result column="GOODS_IMG" property="goodsImg" jdbcType="VARCHAR" />
+    <result column="ORIGINAL_PRICE" property="goodsAmt" jdbcType="DECIMAL" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ID, ORDER_ID, GOODS_CODE, GOODS_NAME, MARKET_PRICE, WEIGHT, GOODS_NUM, SKU_ID, SKU_NAME, 
+    GOODS_ID, STORE_CODE, COMMERCIAL_TYPE, BRAND_NAME, ORIGINAL_PRICE, GOODS_STANDARD, 
+    DISCOUNT_PRICE, BREVIARY_QUALITY_NAME, NORM_QUALITY_NAME, GOODS_IMG, STORE_NAME, 
+    MERCHANT_ID, MERCHANT_NAME, MERCHANT_LOGO, DROP_PRICE, UPDATE_BY, UPDATE_DATE, CREATE_BY, 
+    CREATE_DATE, DEL_FLAG, SPARE1, SPARE2, SPARE3
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from ORDER_DETAILS
+    where ID = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from ORDER_DETAILS
+    where ID = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.blomni.o2o.order.entity.OrderDetails" >
+    insert into ORDER_DETAILS (ID, ORDER_ID, GOODS_CODE, 
+      GOODS_NAME, MARKET_PRICE, WEIGHT, 
+      GOODS_NUM, SKU_ID, SKU_NAME, 
+      GOODS_ID, STORE_CODE, COMMERCIAL_TYPE, 
+      BRAND_NAME, ORIGINAL_PRICE, GOODS_STANDARD, 
+      DISCOUNT_PRICE, BREVIARY_QUALITY_NAME, NORM_QUALITY_NAME, 
+      GOODS_IMG, STORE_NAME, MERCHANT_ID, 
+      MERCHANT_NAME, MERCHANT_LOGO, DROP_PRICE, 
+      UPDATE_BY, UPDATE_DATE, CREATE_BY, 
+      CREATE_DATE, DEL_FLAG, SPARE1, 
+      SPARE2, SPARE3)
+    values (#{id,jdbcType=VARCHAR}, #{orderId,jdbcType=VARCHAR}, #{goodsCode,jdbcType=VARCHAR}, 
+      #{goodsName,jdbcType=VARCHAR}, #{marketPrice,jdbcType=DECIMAL}, #{weight,jdbcType=DOUBLE}, 
+      #{goodsNum,jdbcType=INTEGER}, #{skuId,jdbcType=VARCHAR}, #{skuName,jdbcType=VARCHAR}, 
+      #{goodsId,jdbcType=VARCHAR}, #{storeCode,jdbcType=VARCHAR}, #{commercialType,jdbcType=VARCHAR}, 
+      #{brandName,jdbcType=VARCHAR}, #{originalPrice,jdbcType=DECIMAL}, #{goodsStandard,jdbcType=VARCHAR}, 
+      #{discountPrice,jdbcType=DECIMAL}, #{breviaryQualityName,jdbcType=VARCHAR}, #{normQualityName,jdbcType=VARCHAR}, 
+      #{goodsImg,jdbcType=VARCHAR}, #{storeName,jdbcType=VARCHAR}, #{merchantId,jdbcType=VARCHAR}, 
+      #{merchantName,jdbcType=VARCHAR}, #{merchantLogo,jdbcType=VARCHAR}, #{dropPrice,jdbcType=DECIMAL}, 
+      #{updateBy,jdbcType=VARCHAR}, #{updateDate,jdbcType=TIMESTAMP}, #{createBy,jdbcType=VARCHAR}, 
+      #{createDate,jdbcType=TIMESTAMP}, #{delFlag,jdbcType=CHAR}, #{spare1,jdbcType=VARCHAR}, 
+      #{spare2,jdbcType=VARCHAR}, #{spare3,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.blomni.o2o.order.entity.OrderDetails" >
+    insert into ORDER_DETAILS
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="orderId != null" >
+        ORDER_ID,
+      </if>
+      <if test="goodsCode != null" >
+        GOODS_CODE,
+      </if>
+      <if test="goodsName != null" >
+        GOODS_NAME,
+      </if>
+      <if test="marketPrice != null" >
+        MARKET_PRICE,
+      </if>
+      <if test="weight != null" >
+        WEIGHT,
+      </if>
+      <if test="goodsNum != null" >
+        GOODS_NUM,
+      </if>
+      <if test="skuId != null" >
+        SKU_ID,
+      </if>
+      <if test="skuName != null" >
+        SKU_NAME,
+      </if>
+      <if test="goodsId != null" >
+        GOODS_ID,
+      </if>
+      <if test="storeCode != null" >
+        STORE_CODE,
+      </if>
+      <if test="commercialType != null" >
+        COMMERCIAL_TYPE,
+      </if>
+      <if test="brandName != null" >
+        BRAND_NAME,
+      </if>
+      <if test="originalPrice != null" >
+        ORIGINAL_PRICE,
+      </if>
+      <if test="goodsStandard != null" >
+        GOODS_STANDARD,
+      </if>
+      <if test="discountPrice != null" >
+        DISCOUNT_PRICE,
+      </if>
+      <if test="breviaryQualityName != null" >
+        BREVIARY_QUALITY_NAME,
+      </if>
+      <if test="normQualityName != null" >
+        NORM_QUALITY_NAME,
+      </if>
+      <if test="goodsImg != null" >
+        GOODS_IMG,
+      </if>
+      <if test="storeName != null" >
+        STORE_NAME,
+      </if>
+      <if test="merchantId != null" >
+        MERCHANT_ID,
+      </if>
+      <if test="merchantName != null" >
+        MERCHANT_NAME,
+      </if>
+      <if test="merchantLogo != null" >
+        MERCHANT_LOGO,
+      </if>
+      <if test="dropPrice != null" >
+        DROP_PRICE,
+      </if>
+      <if test="updateBy != null" >
+        UPDATE_BY,
+      </if>
+      <if test="updateDate != null" >
+        UPDATE_DATE,
+      </if>
+      <if test="createBy != null" >
+        CREATE_BY,
+      </if>
+      <if test="createDate != null" >
+        CREATE_DATE,
+      </if>
+      <if test="delFlag != null" >
+        DEL_FLAG,
+      </if>
+      <if test="spare1 != null" >
+        SPARE1,
+      </if>
+      <if test="spare2 != null" >
+        SPARE2,
+      </if>
+      <if test="spare3 != null" >
+        SPARE3,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="orderId != null" >
+        #{orderId,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsCode != null" >
+        #{goodsCode,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsName != null" >
+        #{goodsName,jdbcType=VARCHAR},
+      </if>
+      <if test="marketPrice != null" >
+        #{marketPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="weight != null" >
+        #{weight,jdbcType=DOUBLE},
+      </if>
+      <if test="goodsNum != null" >
+        #{goodsNum,jdbcType=INTEGER},
+      </if>
+      <if test="skuId != null" >
+        #{skuId,jdbcType=VARCHAR},
+      </if>
+      <if test="skuName != null" >
+        #{skuName,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsId != null" >
+        #{goodsId,jdbcType=VARCHAR},
+      </if>
+      <if test="storeCode != null" >
+        #{storeCode,jdbcType=VARCHAR},
+      </if>
+      <if test="commercialType != null" >
+        #{commercialType,jdbcType=VARCHAR},
+      </if>
+      <if test="brandName != null" >
+        #{brandName,jdbcType=VARCHAR},
+      </if>
+      <if test="originalPrice != null" >
+        #{originalPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="goodsStandard != null" >
+        #{goodsStandard,jdbcType=VARCHAR},
+      </if>
+      <if test="discountPrice != null" >
+        #{discountPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="breviaryQualityName != null" >
+        #{breviaryQualityName,jdbcType=VARCHAR},
+      </if>
+      <if test="normQualityName != null" >
+        #{normQualityName,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsImg != null" >
+        #{goodsImg,jdbcType=VARCHAR},
+      </if>
+      <if test="storeName != null" >
+        #{storeName,jdbcType=VARCHAR},
+      </if>
+      <if test="merchantId != null" >
+        #{merchantId,jdbcType=VARCHAR},
+      </if>
+      <if test="merchantName != null" >
+        #{merchantName,jdbcType=VARCHAR},
+      </if>
+      <if test="merchantLogo != null" >
+        #{merchantLogo,jdbcType=VARCHAR},
+      </if>
+      <if test="dropPrice != null" >
+        #{dropPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="updateBy != null" >
+        #{updateBy,jdbcType=VARCHAR},
+      </if>
+      <if test="updateDate != null" >
+        #{updateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createBy != null" >
+        #{createBy,jdbcType=VARCHAR},
+      </if>
+      <if test="createDate != null" >
+        #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="delFlag != null" >
+        #{delFlag,jdbcType=CHAR},
+      </if>
+      <if test="spare1 != null" >
+        #{spare1,jdbcType=VARCHAR},
+      </if>
+      <if test="spare2 != null" >
+        #{spare2,jdbcType=VARCHAR},
+      </if>
+      <if test="spare3 != null" >
+        #{spare3,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.blomni.o2o.order.entity.OrderDetails" >
+    update ORDER_DETAILS
+    <set >
+      <if test="orderId != null" >
+        ORDER_ID = #{orderId,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsCode != null" >
+        GOODS_CODE = #{goodsCode,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsName != null" >
+        GOODS_NAME = #{goodsName,jdbcType=VARCHAR},
+      </if>
+      <if test="marketPrice != null" >
+        MARKET_PRICE = #{marketPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="weight != null" >
+        WEIGHT = #{weight,jdbcType=DOUBLE},
+      </if>
+      <if test="goodsNum != null" >
+        GOODS_NUM = #{goodsNum,jdbcType=INTEGER},
+      </if>
+      <if test="skuId != null" >
+        SKU_ID = #{skuId,jdbcType=VARCHAR},
+      </if>
+      <if test="skuName != null" >
+        SKU_NAME = #{skuName,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsId != null" >
+        GOODS_ID = #{goodsId,jdbcType=VARCHAR},
+      </if>
+      <if test="storeCode != null" >
+        STORE_CODE = #{storeCode,jdbcType=VARCHAR},
+      </if>
+      <if test="commercialType != null" >
+        COMMERCIAL_TYPE = #{commercialType,jdbcType=VARCHAR},
+      </if>
+      <if test="brandName != null" >
+        BRAND_NAME = #{brandName,jdbcType=VARCHAR},
+      </if>
+      <if test="originalPrice != null" >
+        ORIGINAL_PRICE = #{originalPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="goodsStandard != null" >
+        GOODS_STANDARD = #{goodsStandard,jdbcType=VARCHAR},
+      </if>
+      <if test="discountPrice != null" >
+        DISCOUNT_PRICE = #{discountPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="breviaryQualityName != null" >
+        BREVIARY_QUALITY_NAME = #{breviaryQualityName,jdbcType=VARCHAR},
+      </if>
+      <if test="normQualityName != null" >
+        NORM_QUALITY_NAME = #{normQualityName,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsImg != null" >
+        GOODS_IMG = #{goodsImg,jdbcType=VARCHAR},
+      </if>
+      <if test="storeName != null" >
+        STORE_NAME = #{storeName,jdbcType=VARCHAR},
+      </if>
+      <if test="merchantId != null" >
+        MERCHANT_ID = #{merchantId,jdbcType=VARCHAR},
+      </if>
+      <if test="merchantName != null" >
+        MERCHANT_NAME = #{merchantName,jdbcType=VARCHAR},
+      </if>
+      <if test="merchantLogo != null" >
+        MERCHANT_LOGO = #{merchantLogo,jdbcType=VARCHAR},
+      </if>
+      <if test="dropPrice != null" >
+        DROP_PRICE = #{dropPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="updateBy != null" >
+        UPDATE_BY = #{updateBy,jdbcType=VARCHAR},
+      </if>
+      <if test="updateDate != null" >
+        UPDATE_DATE = #{updateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createBy != null" >
+        CREATE_BY = #{createBy,jdbcType=VARCHAR},
+      </if>
+      <if test="createDate != null" >
+        CREATE_DATE = #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="delFlag != null" >
+        DEL_FLAG = #{delFlag,jdbcType=CHAR},
+      </if>
+      <if test="spare1 != null" >
+        SPARE1 = #{spare1,jdbcType=VARCHAR},
+      </if>
+      <if test="spare2 != null" >
+        SPARE2 = #{spare2,jdbcType=VARCHAR},
+      </if>
+      <if test="spare3 != null" >
+        SPARE3 = #{spare3,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.blomni.o2o.order.entity.OrderDetails" >
+    update ORDER_DETAILS
+    set ORDER_ID = #{orderId,jdbcType=VARCHAR},
+      GOODS_CODE = #{goodsCode,jdbcType=VARCHAR},
+      GOODS_NAME = #{goodsName,jdbcType=VARCHAR},
+      MARKET_PRICE = #{marketPrice,jdbcType=DECIMAL},
+      WEIGHT = #{weight,jdbcType=DOUBLE},
+      GOODS_NUM = #{goodsNum,jdbcType=INTEGER},
+      SKU_ID = #{skuId,jdbcType=VARCHAR},
+      SKU_NAME = #{skuName,jdbcType=VARCHAR},
+      GOODS_ID = #{goodsId,jdbcType=VARCHAR},
+      STORE_CODE = #{storeCode,jdbcType=VARCHAR},
+      COMMERCIAL_TYPE = #{commercialType,jdbcType=VARCHAR},
+      BRAND_NAME = #{brandName,jdbcType=VARCHAR},
+      ORIGINAL_PRICE = #{originalPrice,jdbcType=DECIMAL},
+      GOODS_STANDARD = #{goodsStandard,jdbcType=VARCHAR},
+      DISCOUNT_PRICE = #{discountPrice,jdbcType=DECIMAL},
+      BREVIARY_QUALITY_NAME = #{breviaryQualityName,jdbcType=VARCHAR},
+      NORM_QUALITY_NAME = #{normQualityName,jdbcType=VARCHAR},
+      GOODS_IMG = #{goodsImg,jdbcType=VARCHAR},
+      STORE_NAME = #{storeName,jdbcType=VARCHAR},
+      MERCHANT_ID = #{merchantId,jdbcType=VARCHAR},
+      MERCHANT_NAME = #{merchantName,jdbcType=VARCHAR},
+      MERCHANT_LOGO = #{merchantLogo,jdbcType=VARCHAR},
+      DROP_PRICE = #{dropPrice,jdbcType=DECIMAL},
+      UPDATE_BY = #{updateBy,jdbcType=VARCHAR},
+      UPDATE_DATE = #{updateDate,jdbcType=TIMESTAMP},
+      CREATE_BY = #{createBy,jdbcType=VARCHAR},
+      CREATE_DATE = #{createDate,jdbcType=TIMESTAMP},
+      DEL_FLAG = #{delFlag,jdbcType=CHAR},
+      SPARE1 = #{spare1,jdbcType=VARCHAR},
+      SPARE2 = #{spare2,jdbcType=VARCHAR},
+      SPARE3 = #{spare3,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  
+  <select id="getGoodListByOrderId" resultMap="resultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from ORDER_DETAILS
+    where ORDER_ID = #{orderId,jdbcType=VARCHAR}
+  </select>
+  
+  <!-- 根据orderid来查询 返回list多个商品 -->
+   <select id="selectByOrderId" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from ORDER_DETAILS
+    where ORDER_ID = #{orderId,jdbcType=VARCHAR}
+  </select>
+   <resultMap id="BaseResultDetailsMap" type="com.blomni.o2o.order.dto.BLSCloudGoods" >
+    <result column="GOODS_ID" property="goodsName" jdbcType="VARCHAR" />
+    <result column="BREVIARY_QUALITY_NAME" property="goodsStandaName" jdbcType="VARCHAR" />
+    <result column="NORM_QUALITY_NAME" property="goodsStandaName" jdbcType="VARCHAR" />
+    <result column="MARKET_PRICE" property="marketPrice" jdbcType="DECIMAL" />
+    <result column="ORIGINAL_PRICE" property="imageUrl" jdbcType="DECIMAL" />
+    <result column="GOODS_IMG" property="imageUrl" jdbcType="VARCHAR" />
+     <result column="GOODS_NUM" property="count" jdbcType="INTEGER" />
+  </resultMap>
+  <select id="selectKeyDetails" resultMap="BaseResultDetailsMap" parameterType="java.lang.String">
+  select
+		a.GOODS_ID as productId,
+		a.BREVIARY_QUALITY_NAME as goodsSalesName,
+		a.NORM_QUALITY_NAME as goodsStandaName,
+		a.MARKET_PRICE as goodsPrice,
+		a.ORIGINAL_PRICE as marketPrice,
+		a.GOODS_IMG as imageUrl,
+		a.WEIGHT as weight
+		
+		from 
+		
+		ORDER_DETAILS a 
+		
+		where a.ID=#{id}
+		AND a.DEL_FLAG='0'
+  </select>
+  
+
+  
+</mapper>
